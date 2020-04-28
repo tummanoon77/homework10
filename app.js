@@ -36,8 +36,42 @@ function createManager(){
     },
 
     // STUDENT: Add other questions here!
-
-
+    {
+      type: "input",
+      name: "managerName",
+      message: "What is your ID number?",
+      // Note how the validate function works
+      validate: answer => {
+        if (answer !== "") {
+          return true;
+        }
+        return "Please enter at least one number.";
+      }
+    },
+    {
+      type: "input",
+      name: "managerName",
+      message: "What is your email address?",
+      // Note how the validate function works
+      validate: answer => {
+        if (answer !== "") {
+          return true;
+        }
+        return "Please enter at least one character.";
+      }
+    },
+    {
+      type: "input",
+      name: "managerName",
+      message: "What is your office number?",
+      // Note how the validate function works
+      validate: answer => {
+        if (answer !== "") {
+          return true;
+        }
+        return "Please enter at least one number.";
+      }
+    },
     ]).then(answers => {
       // STUDENT: Process the response by instatiating a new object in the Manager class
 
