@@ -74,6 +74,10 @@ function createManager(){
     ]).then(answers => {
       // STUDENT: Process the response by instatiating a new object in the Manager class
       const manager = new Manager(0);
+// Now call the next question set
+      createTeam();
+    });
+  }    
 // This function starts team creation.
 function createTeam() {
   inquirer.prompt([
@@ -84,7 +88,8 @@ function createTeam() {
       name: "type",
       choices: [
         "engineer",
-        "inTern"
+        "inTern",
+        "I do not want to add anymore team member"
         ]
     },
   ]).then(userChoice => {
@@ -225,7 +230,7 @@ function createInTern() {
 }
 // STUDENT: Now create a function for creating an Intern using the code above as an example
     
-})}
+
 // STUDENT: This function will call the render function required near the top (line 12), 
 // and pass INTO it the teamMembers area; from there, write the HTML returned back to a file 
 // in a directory called output.
