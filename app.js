@@ -34,7 +34,6 @@ function createManager(){
         return "Please enter at least one character.";
       }
     },
-
     // STUDENT: Add other questions here!
     {
       type: "input",
@@ -74,70 +73,20 @@ function createManager(){
     },
     ]).then(answers => {
       // STUDENT: Process the response by instatiating a new object in the Manager class
-      function createEngineer(){
-        console.log("Please build your engineer");
-        inquirer.prompt([
-      // Now call the next question set
-      {
-        type: "input",
-        name: "engineerName",
-        message: "What is your engineer's name?",
-        // Note how the validate function works
-        validate: answer => {
-          if (answer !== "") {
-            return true;
-          }
-          return "Please enter at least one character.";
-        }
-      },
-  
-      // STUDENT: Add other questions here!
-      {
-        type: "input",
-        name: "idNumber",
-        message: "What is your ID number?",
-        // Note how the validate function works
-        validate: answer => {
-          if (answer !== "") {
-            return true;
-          }
-          return "Please enter at least one number.";
-        }
-      },
-      {
-        type: "input",
-        name: "email",
-        message: "What is your email address?",
-        // Note how the validate function works
-        validate: answer => {
-          if (answer !== "") {
-            return true;
-          }
-          return "Please enter at least one character.";
-        }
-      },
-      {
-        type: "input",
-        name: "gitHub",
-        message: "What is your GitHub?",
-        // Note how the validate function works
-        validate: answer => {
-          if (answer !== "") {
-            return true;
-          }
-          return "Please enter at least one character.";
-        }
-      },
-      ])}
-      createTeam();
-    });
-}
-
+      const manager = new Manager(0);
 // This function starts team creation.
 function createTeam() {
   inquirer.prompt([
     // STUDENT: Ask which type of team member should be created with a list of choices
-
+    {
+      type: "list", 
+      message: "Which type of team member?",
+      name: "type",
+      choices: [
+        "engineer",
+        "inTern"
+        ]
+    },
   ]).then(userChoice => {
     // STUDENT: Based on which choice they make, call the correct function to ask more questions.
     // If no choice is made, then go to the rendering function.
@@ -145,12 +94,61 @@ function createTeam() {
 
   });
 }
-
+    
 // This function starts team creation.
 function createEngineer() {
   inquirer.prompt([
     // STUDENT:  Engineer questions
-
+    {
+      type: "input",
+      name: "engineerName",
+      message: "What is your engineer's name?",
+      // Note how the validate function works
+      validate: answer => {
+        if (answer !== "") {
+          return true;
+        }
+        return "Please enter at least one character.";
+      }
+    },
+    // STUDENT: Add other questions here!
+    {
+      type: "input",
+      name: "idNumber",
+      message: "What is your ID number?",
+      // Note how the validate function works
+      validate: answer => {
+        if (answer !== "") {
+          return true;
+        }
+        return "Please enter at least one number.";
+      }
+    },
+    {
+      type: "input",
+      name: "email",
+      message: "What is your email address?",
+      // Note how the validate function works
+      validate: answer => {
+        if (answer !== "") {
+          return true;
+        }
+        return "Please enter at least one character.";
+      }
+    },
+    {
+      type: "input",
+      name: "gitHub",
+      message: "What is your GitHub?",
+      // Note how the validate function works
+      validate: answer => {
+        if (answer !== "") {
+          return true;
+        }
+        return "Please enter at least one character.";
+      }
+    },
+    
   ]).then(userChoice => {
     // STUDENT: Make sure the id supplied is unique, then take the data supplied and 
     // instantiate the Engineer constructor.
@@ -162,10 +160,72 @@ function createEngineer() {
 
   });
 }
+function createInTern() {
+  inquirer.prompt([
+    // STUDENT:  inTern questions
+    {
+      type: "input",
+      name: "inTernName",
+      message: "What is your inTern's name?",
+      // Note how the validate function works
+      validate: answer => {
+        if (answer !== "") {
+          return true;
+        }
+        return "Please enter at least one character.";
+      }
+    },
+    // STUDENT: Add other questions here!
+    {
+      type: "input",
+      name: "idNumber",
+      message: "What is your ID number?",
+      // Note how the validate function works
+      validate: answer => {
+        if (answer !== "") {
+          return true;
+        }
+        return "Please enter at least one number.";
+      }
+    },
+    {
+      type: "input",
+      name: "email",
+      message: "What is your email address?",
+      // Note how the validate function works
+      validate: answer => {
+        if (answer !== "") {
+          return true;
+        }
+        return "Please enter at least one character.";
+      }
+    },
+    {
+      type: "input",
+      name: "school",
+      message: "What is your school's name?",
+      // Note how the validate function works
+      validate: answer => {
+        if (answer !== "") {
+          return true;
+        }
+        return "Please enter at least one character.";
+      }
+    },
+  ]).then(userChoice => {
+    // STUDENT: Make sure the id supplied is unique, then take the data supplied and 
+    // instantiate the Engineer constructor.
+    
+    
+    // STUDENT: When finished:
+       // Add the new object to the team member array
+       // Pass control back to the createTeam() function
 
+  });
+}
 // STUDENT: Now create a function for creating an Intern using the code above as an example
-
-
+    
+})}
 // STUDENT: This function will call the render function required near the top (line 12), 
 // and pass INTO it the teamMembers area; from there, write the HTML returned back to a file 
 // in a directory called output.
@@ -183,12 +243,13 @@ function startMenu() {
 
 }
 
-
+    
 // HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
 // and Intern classes should all extend from a class named Employee; see the directions
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
 
-
+    
 startMenu();
+   
