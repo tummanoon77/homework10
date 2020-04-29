@@ -38,7 +38,7 @@ function createManager(){
     // STUDENT: Add other questions here!
     {
       type: "input",
-      name: "managerName",
+      name: "idNumber",
       message: "What is your ID number?",
       // Note how the validate function works
       validate: answer => {
@@ -50,7 +50,7 @@ function createManager(){
     },
     {
       type: "input",
-      name: "managerName",
+      name: "email",
       message: "What is your email address?",
       // Note how the validate function works
       validate: answer => {
@@ -62,7 +62,7 @@ function createManager(){
     },
     {
       type: "input",
-      name: "managerName",
+      name: "officeNumber",
       message: "What is your office number?",
       // Note how the validate function works
       validate: answer => {
@@ -74,9 +74,61 @@ function createManager(){
     },
     ]).then(answers => {
       // STUDENT: Process the response by instatiating a new object in the Manager class
-
-
+      function createEngineer(){
+        console.log("Please build your engineer");
+        inquirer.prompt([
       // Now call the next question set
+      {
+        type: "input",
+        name: "engineerName",
+        message: "What is your engineer's name?",
+        // Note how the validate function works
+        validate: answer => {
+          if (answer !== "") {
+            return true;
+          }
+          return "Please enter at least one character.";
+        }
+      },
+  
+      // STUDENT: Add other questions here!
+      {
+        type: "input",
+        name: "idNumber",
+        message: "What is your ID number?",
+        // Note how the validate function works
+        validate: answer => {
+          if (answer !== "") {
+            return true;
+          }
+          return "Please enter at least one number.";
+        }
+      },
+      {
+        type: "input",
+        name: "email",
+        message: "What is your email address?",
+        // Note how the validate function works
+        validate: answer => {
+          if (answer !== "") {
+            return true;
+          }
+          return "Please enter at least one character.";
+        }
+      },
+      {
+        type: "input",
+        name: "gitHub",
+        message: "What is your GitHub?",
+        // Note how the validate function works
+        validate: answer => {
+          if (answer !== "") {
+            return true;
+          }
+          return "Please enter at least one character.";
+        }
+      },
+      ])}
       createTeam();
     });
 }
