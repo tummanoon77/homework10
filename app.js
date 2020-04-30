@@ -16,6 +16,28 @@ const teamMembers = [];
 
 // This will be an array of the id values created for each object so there are no duplicates
 const idArray = [];
+// start()
+
+function start() {
+  inquirer.prompt([
+    {
+      type: "list",
+      message: "Choose an emplyee type: ",
+      name: "type",
+      choices: [
+        "Manager",
+        "Engineer",
+        "InTern",
+        "Finished"
+      ]
+
+    }
+  ]).then(response =>{
+    if(response.type === "manager"){
+      createEmployee("manager")
+    }
+  })
+}
 
 
 // STUDENT: This function generates all the questions for creating the manager. You need to add more to this.
@@ -73,7 +95,9 @@ function createManager(){
     },
     ]).then(answers => {
       // STUDENT: Process the response by instatiating a new object in the Manager class
-      const manager = new Manager(0);
+      const managerobj = new Manager(genericData.name,genericData.email,response.officeNumber)
+      teamMembers.push(managerObj)
+      start();
 // Now call the next question set
       createTeam();
     });
@@ -87,8 +111,8 @@ function createTeam() {
       message: "Which type of team member?",
       name: "type",
       choices: [
-        "engineer",
-        "inTern",
+        "Engineer",
+        "InTern",
         "I do not want to add anymore team member"
         ]
     },
@@ -225,7 +249,7 @@ function createInTern() {
     // STUDENT: When finished:
        // Add the new object to the team member array
        // Pass control back to the createTeam() function
-
+       createTeam();
   });
 }
 // STUDENT: Now create a function for creating an Intern using the code above as an example
@@ -235,7 +259,10 @@ function createInTern() {
 // and pass INTO it the teamMembers area; from there, write the HTML returned back to a file 
 // in a directory called output.
 function renderHtmlPage(){
+const html = render(teamMembers)
+fs.writeFile("output/index.html",html,err =>{
 
+})
 }
 
 // This is our starter function.
