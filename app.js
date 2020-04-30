@@ -57,18 +57,7 @@ function createManager(){
       }
     },
     // STUDENT: Add other questions here!
-    {
-      type: "input",
-      name: "idNumber",
-      message: "What is your ID number?",
-      // Note how the validate function works
-      validate: answer => {
-        if (answer !== "") {
-          return true;
-        }
-        return "Please enter at least one number.";
-      }
-    },
+    
     {
       type: "input",
       name: "email",
@@ -118,6 +107,7 @@ function createTeam() {
     },
   ]).then(userChoice => {
     // STUDENT: Based on which choice they make, call the correct function to ask more questions.
+    
     // If no choice is made, then go to the rendering function.
 
 
@@ -143,7 +133,7 @@ function createEngineer() {
     // STUDENT: Add other questions here!
     {
       type: "input",
-      name: "idNumber",
+      name: "officeNumber",
       message: "What is your ID number?",
       // Note how the validate function works
       validate: answer => {
@@ -180,6 +170,8 @@ function createEngineer() {
     
   ]).then(userChoice => {
     // STUDENT: Make sure the id supplied is unique, then take the data supplied and 
+    const engineerObj = new Engineer(genericData.name,genericData.email,response.officeNumber,response.github)
+      teamMembers.push(engineerObj)
     // instantiate the Engineer constructor.
     
     
@@ -207,7 +199,7 @@ function createInTern() {
     // STUDENT: Add other questions here!
     {
       type: "input",
-      name: "idNumber",
+      name: "officeNumber",
       message: "What is your ID number?",
       // Note how the validate function works
       validate: answer => {
@@ -243,6 +235,8 @@ function createInTern() {
     },
   ]).then(userChoice => {
     // STUDENT: Make sure the id supplied is unique, then take the data supplied and 
+    const internObj = new Intern(genericData.name,genericData.email,response.school,response.officeNumber)
+    teamMembers.push(inTernObj)
     // instantiate the Engineer constructor.
     
     
