@@ -111,7 +111,7 @@ function createTeam() {
     {
       type: "list", 
       message: "Which type of team member?",
-      name: "type",
+      name: "teamType",
       choices: [
         "Engineer",
         "InTern",
@@ -120,7 +120,12 @@ function createTeam() {
     },
   ]).then(userChoice => {
     // STUDENT: Based on which choice they make, call the correct function to ask more questions.
-    
+    if (teamType === "Engineer") { createEngineer() }
+    else if (teamType === "Intern") { createIntern() }
+    if (userChoice.teamType === "Engineer") { createEngineer() }
+    else if (userChoice.teamType === "Intern") { createIntern() }
+    else { render() }
+  });
     // If no choice is made, then go to the rendering function.
 
 
@@ -250,7 +255,7 @@ function createInTern() {
     // STUDENT: Make sure the id supplied is unique, then take the data supplied and 
     const inTernObj = new Intern(userChoice.inTernName,userChoice.emailIntern,userChoice.school,userChoice.idIntern)
     teamMembers.push(inTernObj)
-    // instantiate the Engineer constructor.
+    // instantiate the inTern constructor.
     idArray.push(userChoice.idIntern)
     
     // STUDENT: When finished:
