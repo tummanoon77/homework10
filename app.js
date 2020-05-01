@@ -96,7 +96,7 @@ function createManager(){
     },
     ]).then(answers => {
       // STUDENT: Process the response by instatiating a new object in the Manager class
-      const managerobj = new Manager(answers.managerName,answers.emailManager,answers.officeNumber,answer.idManager)
+      const managerObj = new Manager(answers.managerName,answers.emailManager,answers.officeNumber,answer.idManager)
       teamMembers.push(managerObj)
       idArray.push(idManager)
 // Now call the next question set
@@ -259,8 +259,7 @@ function createInTern() {
        createTeam();
   });
 }
-// STUDENT: Now create a function for creating an Intern using the code above as an example
-    
+
 
 // STUDENT: This function will call the render function required near the top (line 12), 
 // and pass INTO it the teamMembers area; from there, write the HTML returned back to a file 
