@@ -18,7 +18,7 @@ const teamMembers = [];
 const idArray = [];
 // start()
 
-function start() {
+function createTeam() {
   inquirer.prompt([
     {
       type: "list",
@@ -86,7 +86,7 @@ function createManager(){
       // STUDENT: Process the response by instatiating a new object in the Manager class
       const managerobj = new Manager(genericData.name,genericData.email,response.officeNumber)
       teamMembers.push(managerObj)
-      start();
+      
 // Now call the next question set
       createTeam();
     });
