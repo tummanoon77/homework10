@@ -18,7 +18,7 @@ const teamMembers = [];
 const idArray = [];
 // start()
 
-function createTeam() {
+function start() {
   inquirer.prompt([
     {
       type: "list",
@@ -60,7 +60,7 @@ function createManager(){
     
     {
       type: "input",
-      name: "email",
+      name: "emailManager",
       message: "What is your email address?",
       // Note how the validate function works
       validate: answer => {
@@ -82,13 +82,26 @@ function createManager(){
         return "Please enter at least one number.";
       }
     },
+    {
+      type: "input",
+      name: "idManager",
+      message: "What is your ID number?",
+      // Note how the validate function works
+      validate: answer => {
+        if (answer !== "") {
+          return true;
+        }
+        return "Please enter at least one number.";
+      }
+    },
     ]).then(answers => {
       // STUDENT: Process the response by instatiating a new object in the Manager class
-      const managerobj = new Manager(genericData.name,genericData.email,response.officeNumber)
+      const managerobj = new Manager(answers.managerName,answers.emailManager,answers.officeNumber,answer.idManager)
       teamMembers.push(managerObj)
-      
+      idArray.push(idManager)
 // Now call the next question set
-      createTeam();
+start();
+createTeam();
     });
   }    
 // This function starts team creation.
@@ -133,7 +146,7 @@ function createEngineer() {
     // STUDENT: Add other questions here!
     {
       type: "input",
-      name: "officeNumber",
+      name: "idEngineer",
       message: "What is your ID number?",
       // Note how the validate function works
       validate: answer => {
@@ -145,7 +158,7 @@ function createEngineer() {
     },
     {
       type: "input",
-      name: "email",
+      name: "emailEngineer",
       message: "What is your email address?",
       // Note how the validate function works
       validate: answer => {
@@ -157,7 +170,7 @@ function createEngineer() {
     },
     {
       type: "input",
-      name: "gitHub",
+      name: "gitHubEngineer",
       message: "What is your GitHub?",
       // Note how the validate function works
       validate: answer => {
@@ -170,15 +183,15 @@ function createEngineer() {
     
   ]).then(userChoice => {
     // STUDENT: Make sure the id supplied is unique, then take the data supplied and 
-    const engineerObj = new Engineer(genericData.name,genericData.email,response.officeNumber,response.github)
+    const engineerObj = new Engineer(userChoice.engineerName,userChoice.emailEngineer,userChoice.idEngineer,userChoice.gitHubEngineer)
       teamMembers.push(engineerObj)
     // instantiate the Engineer constructor.
     
-    
+    idArray.push(userChoice.idEngineer)
     // STUDENT: When finished:
        // Add the new object to the team member array
        // Pass control back to the createTeam() function
-
+createTeam();
   });
 }
 function createInTern() {
@@ -199,7 +212,7 @@ function createInTern() {
     // STUDENT: Add other questions here!
     {
       type: "input",
-      name: "officeNumber",
+      name: "idIntern",
       message: "What is your ID number?",
       // Note how the validate function works
       validate: answer => {
@@ -211,7 +224,7 @@ function createInTern() {
     },
     {
       type: "input",
-      name: "email",
+      name: "emailIntern",
       message: "What is your email address?",
       // Note how the validate function works
       validate: answer => {
@@ -235,10 +248,10 @@ function createInTern() {
     },
   ]).then(userChoice => {
     // STUDENT: Make sure the id supplied is unique, then take the data supplied and 
-    const internObj = new Intern(genericData.name,genericData.email,response.school,response.officeNumber)
+    const inTernObj = new Intern(userChoice.inTernName,userChoice.emailIntern,userChoice.school,userChoice.idIntern)
     teamMembers.push(inTernObj)
     // instantiate the Engineer constructor.
-    
+    idArray.push(userChoice.idIntern)
     
     // STUDENT: When finished:
        // Add the new object to the team member array
