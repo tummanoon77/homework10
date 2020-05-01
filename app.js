@@ -1,4 +1,4 @@
-const Manager = require("./lib/Manager");
+const  Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
@@ -96,11 +96,11 @@ function createManager(){
     },
     ]).then(answers => {
       // STUDENT: Process the response by instatiating a new object in the Manager class
-      const managerObj = new Manager(answers.managerName,answers.emailManager,answers.officeNumber,answer.idManager)
+      const managerObj = new Manager(answers.managerName,answers.emailManager,answers.officeNumber,answers.idManager)
       teamMembers.push(managerObj)
       idArray.push(idManager)
-// Now call the next question set
-start();
+
+
 createTeam();
     });
   }    
