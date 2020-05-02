@@ -96,7 +96,13 @@ function createManager(){
     },
     ]).then(answers => {
       // STUDENT: Process the response by instatiating a new object in the Manager class
-      const managerObj = new Manager(answers.managerName,answers.emailManager,answers.officeNumber,answers.idManager)
+     const manager = new Manager;
+     this.name = answers.managerName ;
+     this.id = answers.idManager ;
+     this.email = answers.emailManager ;
+     this.officeNumber = answers.officeNumber ;
+     
+      const managerObj = manager(answers.managerName,answers.emailManager,answers.officeNumber,answers.idManager)
       teamMembers.push(managerObj)
       idArray.push(idManager)
 
@@ -125,7 +131,7 @@ function createTeam() {
     if (userChoice.teamType === "Engineer") { createEngineer() }
     else if (userChoice.teamType === "Intern") { createIntern() }
     else { render() }
-  });
+  
     // If no choice is made, then go to the rendering function.
 
 
@@ -187,8 +193,13 @@ function createEngineer() {
     },
     
   ]).then(userChoice => {
+    const engineer = new Engineer;
+    this.id = userChoice.idEngineer;
+    this.email = userChoice.emailEngineer;
+    this.name = userChoice.engineerName;
+    this.gitHub = userChoice.gitHubEngineer
     // STUDENT: Make sure the id supplied is unique, then take the data supplied and 
-    const engineerObj = new Engineer(userChoice.engineerName,userChoice.emailEngineer,userChoice.idEngineer,userChoice.gitHubEngineer)
+    const engineerObj = engineer(userChoice.engineerName,userChoice.emailEngineer,userChoice.idEngineer,userChoice.gitHubEngineer)
       teamMembers.push(engineerObj)
     // instantiate the Engineer constructor.
     
@@ -252,8 +263,13 @@ function createInTern() {
       }
     },
   ]).then(userChoice => {
+    const inTern = new Intern;
+    this.name = userChoice.inTernName;
+    this.id = userChoice.idIntern;
+    this.email = userChoice.emailIntern;
+    this.school =userChoice.school;
     // STUDENT: Make sure the id supplied is unique, then take the data supplied and 
-    const inTernObj = new Intern(userChoice.inTernName,userChoice.emailIntern,userChoice.school,userChoice.idIntern)
+    const inTernObj = inTern(userChoice.inTernName,userChoice.emailIntern,userChoice.school,userChoice.idIntern)
     teamMembers.push(inTernObj)
     // instantiate the inTern constructor.
     idArray.push(userChoice.idIntern)
