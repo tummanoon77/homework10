@@ -16,28 +16,6 @@ const teamMembers = [];
 
 // This will be an array of the id values created for each object so there are no duplicates
 const idArray = [];
-// start()
-
-function start() {
-  inquirer.prompt([
-    {
-      type: "list",
-      message: "Choose an emplyee type: ",
-      name: "type",
-      choices: [
-        "Manager",
-        "Engineer",
-        "InTern",
-        "Finished"
-      ]
-
-    }
-  ]).then(response =>{
-    if(response.type === "Manager"){
-      createEmployee("Manager")
-    }
-  })
-}
 
 
 // STUDENT: This function generates all the questions for creating the manager. You need to add more to this.
@@ -94,22 +72,18 @@ function createManager(){
         return "Please enter at least one number.";
       }
     },
-    ]).then(answers => {
+    ]).then(res => {
       // STUDENT: Process the response by instatiating a new object in the Manager class
-     const managerObj = new Manager;
-     this.name = answers.managerName ;
-     this.id = answers.idManager ;
-     this.email = answers.emailManager ;
-     this.officeNumber = answers.officeNumber ;
+     const managerObj = new Manager(res.managerName,res.idManager,res.emailManager,res.officeNumber)
+     
     
-      
       teamMembers.push(managerObj)
       idArray.push(managerObj.id)
 
-
+console.log (managerObj);
 createTeam();
     });
-  }    
+  }  
 // This function starts team creation.
 function createTeam() {
   inquirer.prompt([
@@ -120,7 +94,7 @@ function createTeam() {
       name: "teamType",
       choices: [
         "Engineer",
-        "InTern",
+        "Intern",
         "I do not want to add anymore team member"
         ]
     },
@@ -190,12 +164,9 @@ function createEngineer() {
       }
     },
     
-  ]).then(userChoice => {
-    const engineerObj = new Engineer;
-    this.id = userChoice.idEngineer;
-    this.email = userChoice.emailEngineer;
-    this.name = userChoice.engineerName;
-    this.gitHub = userChoice.gitHubEngineer
+  ]).then(res => {
+    const engineerObj = new Engineer(res.engineerName,res.gitHubEngineer,res.emailEngineer,res.idEngineer)
+    
     // STUDENT: Make sure the id supplied is unique, then take the data supplied and 
         teamMembers.push(engineerObj)
     // instantiate the Engineer constructor.
@@ -203,6 +174,7 @@ function createEngineer() {
     // STUDENT: When finished:
        // Add the new object to the team member array
        // Pass control back to the createTeam() function
+       console.log(engineerObj);
 createTeam();
   });
 }
@@ -211,7 +183,7 @@ function createIntern() {
     // STUDENT:  inTern questions
     {
       type: "input",
-      name: "inTernName",
+      name: "internName",
       message: "What is your inTern's name?",
       // Note how the validate function works
       validate: answer => {
@@ -248,7 +220,7 @@ function createIntern() {
     },
     {
       type: "input",
-      name: "school",
+      name: "internSchool",
       message: "What is your school's name?",
       // Note how the validate function works
       validate: answer => {
@@ -258,16 +230,13 @@ function createIntern() {
         return "Please enter at least one character.";
       }
     },
-  ]).then(userChoice => {
-    const inTernObj = new Intern;
-    this.name = userChoice.inTernName;
-    this.id = userChoice.idIntern;
-    this.email = userChoice.emailIntern;
-    this.school =userChoice.school;
+  ]).then(res => {
+    const internObj = new Intern(res.internSchool,res.emailIntern,res.idIntern)
+    console.log(internObj);
     // STUDENT: Make sure the id supplied is unique, then take the data supplied and 
-    teamMembers.push(inTernObj)
+    teamMembers.push(internObj)
     // instantiate the inTern constructor.
-    idArray.push(inTernObj.id)
+    idArray.push(internObj.id)
     
     // STUDENT: When finished:
        // Add the new object to the team member array
@@ -281,8 +250,8 @@ function createIntern() {
 // and pass INTO it the teamMembers area; from there, write the HTML returned back to a file 
 // in a directory called output.
 function renderHtmlPage(){
-const html = render(teamMembers)
-fs.writeFile("output/index.html",html,err =>{
+const html = render(teamMembers);
+fs.writeFile("output.html",html,err =>{
 
 })
 }
@@ -291,7 +260,7 @@ fs.writeFile("output/index.html",html,err =>{
 // Note that we use separate functions for different questions in inquirer to 
 // help keep code organized.
 function startMenu() {
-
+  
   // Here we start things off by calling the createManager function
   createManager()
 
