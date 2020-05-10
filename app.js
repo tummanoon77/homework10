@@ -33,8 +33,8 @@ function start() {
 
     }
   ]).then(response =>{
-    if(response.type === "manager"){
-      createEmployee("manager")
+    if(response.type === "Manager"){
+      createEmployee("Manager")
     }
   })
 }
@@ -96,15 +96,15 @@ function createManager(){
     },
     ]).then(answers => {
       // STUDENT: Process the response by instatiating a new object in the Manager class
-     const manager = new Manager;
+     const managerObj = new Manager;
      this.name = answers.managerName ;
      this.id = answers.idManager ;
      this.email = answers.emailManager ;
      this.officeNumber = answers.officeNumber ;
-     
-      const managerObj = manager(answers.managerName,answers.emailManager,answers.officeNumber,answers.idManager)
+    
+      
       teamMembers.push(managerObj)
-      idArray.push(idManager)
+      idArray.push(managerObj.id)
 
 
 createTeam();
@@ -124,13 +124,11 @@ function createTeam() {
         "I do not want to add anymore team member"
         ]
     },
-  ]).then(userChoice => {
+  ]).then(res => {
     // STUDENT: Based on which choice they make, call the correct function to ask more questions.
-    if (teamType === "Engineer") { createEngineer() }
-    else if (teamType === "Intern") { createIntern() }
-    if (userChoice.teamType === "Engineer") { createEngineer() }
-    else if (userChoice.teamType === "Intern") { createIntern() }
-    else { render() }
+    if (res.teamType === "Engineer") { createEngineer() }
+    else if (res.teamType === "Intern") { createIntern() }
+    else { renderHtmlPage() }
   
     // If no choice is made, then go to the rendering function.
 
@@ -193,24 +191,22 @@ function createEngineer() {
     },
     
   ]).then(userChoice => {
-    const engineer = new Engineer;
+    const engineerObj = new Engineer;
     this.id = userChoice.idEngineer;
     this.email = userChoice.emailEngineer;
     this.name = userChoice.engineerName;
     this.gitHub = userChoice.gitHubEngineer
     // STUDENT: Make sure the id supplied is unique, then take the data supplied and 
-    const engineerObj = engineer(userChoice.engineerName,userChoice.emailEngineer,userChoice.idEngineer,userChoice.gitHubEngineer)
-      teamMembers.push(engineerObj)
+        teamMembers.push(engineerObj)
     // instantiate the Engineer constructor.
-    
-    idArray.push(userChoice.idEngineer)
+        idArray.push(engineerObj.id)
     // STUDENT: When finished:
        // Add the new object to the team member array
        // Pass control back to the createTeam() function
 createTeam();
   });
 }
-function createInTern() {
+function createIntern() {
   inquirer.prompt([
     // STUDENT:  inTern questions
     {
@@ -263,16 +259,15 @@ function createInTern() {
       }
     },
   ]).then(userChoice => {
-    const inTern = new Intern;
+    const inTernObj = new Intern;
     this.name = userChoice.inTernName;
     this.id = userChoice.idIntern;
     this.email = userChoice.emailIntern;
     this.school =userChoice.school;
     // STUDENT: Make sure the id supplied is unique, then take the data supplied and 
-    const inTernObj = inTern(userChoice.inTernName,userChoice.emailIntern,userChoice.school,userChoice.idIntern)
     teamMembers.push(inTernObj)
     // instantiate the inTern constructor.
-    idArray.push(userChoice.idIntern)
+    idArray.push(inTernObj.id)
     
     // STUDENT: When finished:
        // Add the new object to the team member array
